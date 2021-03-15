@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import { Button } from "react-bootstrap"
-import { iCard } from "../types"
+import { iCard } from "@types"
 import { CardContainer } from "./styles"
 
 export const Card = ({
@@ -13,10 +13,10 @@ export const Card = ({
   onDelete(): void
 }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
-  const [inputText, setInputText] = useState<string>(card.text)
+  const [inputText, setInputText] = useState<string>(card.text || "")
   if (isEditMode) {
     return (
-      <CardContainer>
+      <CardContainer card={card}>
         <input
           type="text"
           value={inputText}
@@ -36,7 +36,7 @@ export const Card = ({
     )
   } else {
     return (
-      <CardContainer onClick={() => setIsEditMode(true)}>
+      <CardContainer onClick={() => setIsEditMode(true)} card={card}>
         {card.text}
       </CardContainer>
     )
