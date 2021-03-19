@@ -36,7 +36,7 @@ export default function Board() {
     return () => {
       subscription()
     }
-  }, [])
+  }, [boardId])
 
   const createCard = async ({ column }: { column: string }) => {
     const doc = await firebase.firestore
@@ -47,6 +47,7 @@ export default function Board() {
         column,
         createdAt: FirebaseStatic.default.firestore.FieldValue.serverTimestamp(),
       })
+    setSelectedCardId((await doc.get()).id)
   }
 
   const updateCard = ({ card, text }: { card: iCard; text: string }) => {
