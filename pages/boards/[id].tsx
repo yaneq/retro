@@ -5,6 +5,7 @@ import { iCard } from "@types"
 import { useFirebase } from "@providers"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import * as FirebaseStatic from "firebase"
 
 enum Columns {
   WENT_WELL = "went-well",
@@ -24,6 +25,7 @@ export default function Board() {
       .collection("boards")
       .doc(boardId)
       .collection("cards")
+      .orderBy("createdAt")
       .onSnapshot((snapshot) => {
         console.log("on snapshot")
         let cards: iCard[] = []
@@ -38,12 +40,15 @@ export default function Board() {
     }
   }, [])
 
-  const createCard = ({ column }: { column: string }) => {
-    firebase.firestore
+  const createCard = async ({ column }: { column: string }) => {
+    const doc = await firebase.firestore
       .collection("boards")
       .doc(boardId)
       .collection("cards")
-      .add({ column })
+      .add({
+        column,
+        createdAt: FirebaseStatic.default.firestore.FieldValue.serverTimestamp(),
+      })
   }
 
   const updateCard = ({ card, text }: { card: iCard; text: string }) => {
