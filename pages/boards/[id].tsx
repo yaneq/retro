@@ -69,7 +69,11 @@ export default function Board() {
   }
 
   return (
-    <Container>
+    <Container
+      onClick={() => {
+        setSelectedCardId(null)
+      }}
+    >
       <Row>
         <Link href={`/`}>Back to boards</Link>
       </Row>

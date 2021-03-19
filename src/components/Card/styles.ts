@@ -16,7 +16,7 @@ export const CardContainer = styled.div<{ card: iCard }>`
     card?.column === "went-well"
       ? "#add"
       : card?.column === "neutral"
-      ? "#ddd"
+      ? "#e5e5e5"
       : "#dad"};
 `
 

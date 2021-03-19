@@ -25,6 +25,7 @@ export const Card = ({
       setTimeout(() => inputRef.current.focus(), 300)
     }
   }, [focussed])
+
   if (isEditMode) {
     return (
       <CardContainer card={card}>
@@ -53,7 +54,13 @@ export const Card = ({
     )
   } else {
     return (
-      <CardContainer onClick={() => onSelect(card)} card={card}>
+      <CardContainer
+        onClick={(event) => {
+          onSelect(card)
+          event.stopPropagation()
+        }}
+        card={card}
+      >
         {card.text}
       </CardContainer>
     )
