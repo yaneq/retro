@@ -16,23 +16,21 @@ enum Columns {
 export default function Board() {
   const router = useRouter()
   const boardId: string = router.query.id as string
-  console.log("board params", { boardId })
   const firebase = useFirebase()
   const [cards, setCards] = useState<iCard[]>([])
+  const [selectedCardId, setSelectedCardId] = useState<string>()
+
   useEffect(() => {
-    console.log("subscribing to board updates on", boardId)
     const subscription = firebase.firestore
       .collection("boards")
       .doc(boardId)
       .collection("cards")
       .orderBy("createdAt")
       .onSnapshot((snapshot) => {
-        console.log("on snapshot")
         let cards: iCard[] = []
         snapshot.forEach((documentSnapshot: any) => {
           cards.push({ ...documentSnapshot.data(), id: documentSnapshot.id })
         })
-        console.log("got cards", cards)
         setCards(cards)
       })
     return () => {
@@ -84,9 +82,12 @@ export default function Board() {
             })
             .map((card) => (
               <Card
+                key={card.id}
                 card={card}
                 onSave={(text) => updateCard({ card, text })}
                 onDelete={() => deleteCard({ card })}
+                onSelect={(_card) => setSelectedCardId(_card.id)}
+                focussed={card.id === selectedCardId}
               />
             ))}
           <CreateCard
@@ -104,6 +105,8 @@ export default function Board() {
                 card={card}
                 onSave={(text) => updateCard({ card, text })}
                 onDelete={() => deleteCard({ card })}
+                onSelect={(_card) => setSelectedCardId(_card.id)}
+                focussed={card.id === selectedCardId}
               />
             ))}
           <CreateCard onClick={() => createCard({ column: Columns.NEUTRAL })} />
@@ -119,6 +122,8 @@ export default function Board() {
                 card={card}
                 onSave={(text) => updateCard({ card, text })}
                 onDelete={() => deleteCard({ card })}
+                onSelect={(_card) => setSelectedCardId(_card.id)}
+                focussed={card.id === selectedCardId}
               />
             ))}
           <CreateCard
