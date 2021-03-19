@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Button } from "react-bootstrap"
 import { iCard } from "@types"
-import { ButtonContainer, CardContainer, CardInput } from "./styles"
+import {
+  ButtonContainer,
+  CardContainer,
+  CardInput,
+  VoteContainer,
+  VoteCount,
+} from "./styles"
+import { HandThumbsUp } from "react-bootstrap-icons"
 
 export const Card = ({
   card,
@@ -9,31 +16,46 @@ export const Card = ({
   onDelete,
   focussed,
   onSelect,
+  votingMode,
 }: {
   card: iCard
-  onSave(value: string): void
+  onSave(data: object): void
   onDelete(): void
   onSelect(card: iCard): void
   focussed: boolean
+  votingMode: boolean
 }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
   const [inputText, setInputText] = useState<string>(card.text || "")
   const inputRef = useRef(null)
+
+  const saveAndClose = () => {
+    onSave({ text: inputText })
+    setIsEditMode(false)
+  }
+
   useEffect(() => {
     setIsEditMode(focussed)
     if (focussed) {
-      setTimeout(() => inputRef.current.focus(), 300)
+      setTimeout(() => inputRef.current.focus(), 100)
     }
   }, [focussed])
 
   if (isEditMode) {
     return (
-      <CardContainer card={card}>
+      <CardContainer
+        card={card}
+        editMode={true}
+        onClick={(event) => event.stopPropagation()}
+      >
         <CardInput
           ref={inputRef}
           type="text"
           value={inputText}
           onChange={(event) => setInputText(event.target.value)}
+          onKeyDown={(event) => {
+            event.key === "Enter" && saveAndClose()
+          }}
         />
         <br />
         <ButtonContainer>
@@ -42,8 +64,7 @@ export const Card = ({
           </Button>
           <Button
             onClick={() => {
-              onSave(inputText)
-              setIsEditMode(false)
+              saveAndClose()
             }}
             variant={""}
           >
@@ -56,12 +77,24 @@ export const Card = ({
     return (
       <CardContainer
         onClick={(event) => {
-          onSelect(card)
           event.stopPropagation()
+          onSelect(card)
         }}
         card={card}
+        votingMode={votingMode}
       >
         {card.text}
+        {!!votingMode && (
+          <VoteContainer
+            onClick={(event) => {
+              event.stopPropagation()
+              onSave({ votes: card.votes + 1 })
+            }}
+          >
+            <HandThumbsUp />
+            <VoteCount>{card.votes}</VoteCount>
+          </VoteContainer>
+        )}
       </CardContainer>
     )
   }

@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "react-bootstrap"
+import { Col, Container, Row, Form } from "react-bootstrap"
 import React, { useEffect, useState } from "react"
 import { Card, CreateCard } from "@components"
 import { iCard } from "@types"
@@ -19,6 +19,7 @@ export default function Board() {
   const firebase = useFirebase()
   const [cards, setCards] = useState<iCard[]>([])
   const [selectedCardId, setSelectedCardId] = useState<string>()
+  const [isVotingMode, setIsVotingMode] = useState<boolean>(false)
 
   useEffect(() => {
     const subscription = firebase.firestore
@@ -45,18 +46,20 @@ export default function Board() {
       .collection("cards")
       .add({
         column,
+        votes: 0,
         createdAt: FirebaseStatic.default.firestore.FieldValue.serverTimestamp(),
       })
     setSelectedCardId((await doc.get()).id)
   }
 
-  const updateCard = ({ card, text }: { card: iCard; text: string }) => {
+  const updateCard = ({ card, data }: { card: iCard; data: object }) => {
     firebase.firestore
       .collection("boards")
       .doc(boardId)
       .collection("cards")
       .doc(card.id)
-      .set({ text }, { merge: true })
+      .set({ ...card, ...data }, { merge: true })
+    setSelectedCardId(null)
   }
 
   const deleteCard = ({ card }: { card: iCard }) => {
@@ -68,16 +71,31 @@ export default function Board() {
       .delete()
   }
 
+  const onSelectCard = (card) => {
+    if (!isVotingMode) setSelectedCardId(card.id)
+  }
+
   return (
     <Container
       onClick={() => {
         setSelectedCardId(null)
       }}
     >
+      {selectedCardId}
       <Row>
         <Link href={`/`}>Back to boards</Link>
       </Row>
       <h1>Retro Board</h1>
+      <Form>
+        <Form.Switch
+          id="custom-switch"
+          onChange={(event) => {
+            setIsVotingMode(!isVotingMode)
+          }}
+          checked={isVotingMode}
+          label="allow voting"
+        />
+      </Form>
       <Row>
         <Col>
           <h3>Went well</h3>
@@ -89,10 +107,11 @@ export default function Board() {
               <Card
                 key={card.id}
                 card={card}
-                onSave={(text) => updateCard({ card, text })}
+                onSave={(data) => updateCard({ card, data })}
                 onDelete={() => deleteCard({ card })}
-                onSelect={(_card) => setSelectedCardId(_card.id)}
+                onSelect={(_card) => onSelectCard(_card)}
                 focussed={card.id === selectedCardId}
+                votingMode={isVotingMode}
               />
             ))}
           <CreateCard
@@ -107,11 +126,13 @@ export default function Board() {
             })
             .map((card) => (
               <Card
+                key={card.id}
                 card={card}
-                onSave={(text) => updateCard({ card, text })}
+                onSave={(data) => updateCard({ card, data })}
                 onDelete={() => deleteCard({ card })}
-                onSelect={(_card) => setSelectedCardId(_card.id)}
+                onSelect={(_card) => onSelectCard(_card)}
                 focussed={card.id === selectedCardId}
+                votingMode={isVotingMode}
               />
             ))}
           <CreateCard onClick={() => createCard({ column: Columns.NEUTRAL })} />
@@ -124,11 +145,13 @@ export default function Board() {
             })
             .map((card) => (
               <Card
+                key={card.id}
                 card={card}
-                onSave={(text) => updateCard({ card, text })}
+                onSave={(data) => updateCard({ card, data })}
                 onDelete={() => deleteCard({ card })}
-                onSelect={(_card) => setSelectedCardId(_card.id)}
+                onSelect={(_card) => onSelectCard(_card)}
                 focussed={card.id === selectedCardId}
+                votingMode={isVotingMode}
               />
             ))}
           <CreateCard

@@ -1,5 +1,4 @@
 import React, { forwardRef, useState } from "react"
-import { Button } from "react-bootstrap"
 import { iBoard } from "@types"
 import { BoardContainer } from "./styles"
 
