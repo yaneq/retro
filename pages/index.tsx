@@ -1,19 +1,16 @@
-import { AuthControls } from "@components"
-import { useAuth, useFirebase, useUser } from "@providers"
 import * as React from "react"
-import { Spinner } from "react-bootstrap"
+import { TopMenu } from "src/components/TopMenu"
 
 const Landing = () => {
-  const { user, loading } = useUser()
-  const auth = useAuth()
-
   return (
-    <div>
-      <AuthControls />
-      <h1>Welcome to ReRetro</h1>
-      {loading && <Spinner animation={"border"} />}
-      {user && <>user is {user?.displayName}</>}
-    </div>
+    <>
+      <TopMenu />
+      <div className="container w-full p-20 m-4 mx-auto my-16 text-center bg-white border-2 border-dashed border-blueGray-300 h-96 rounded-xl">
+        <p className="mt-20 italic tracking-tighter text-md text-blueGray-500 title-font">
+          -- Content goes here --
+        </p>
+      </div>
+    </>
   )
 }
 
