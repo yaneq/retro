@@ -81,7 +81,6 @@ export default function Board() {
         setSelectedCardId(null)
       }}
     >
-      {selectedCardId}
       <Row>
         <Link href={`/`}>Back to boards</Link>
       </Row>
