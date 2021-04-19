@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Button } from "react-bootstrap"
 import { iBoard, iCard } from "@types"
 import {
   ButtonContainer,
@@ -8,7 +7,7 @@ import {
   VoteContainer,
   VoteCount,
 } from "./styles"
-import { HandThumbsUp } from "react-bootstrap-icons"
+import { FaRegThumbsUp } from "react-icons/fa"
 import { iFirebaseUser } from "@providers"
 
 export const Card = ({
@@ -76,17 +75,14 @@ export const Card = ({
         />
         <br />
         <ButtonContainer>
-          <Button onClick={() => onDelete()} variant={"link"} size={"sm"}>
-            Delete
-          </Button>
-          <Button
+          <button onClick={() => onDelete()}>Delete</button>
+          <button
             onClick={() => {
               saveAndClose()
             }}
-            variant={""}
           >
             Save
-          </Button>
+          </button>
         </ButtonContainer>
       </CardContainer>
     )
@@ -114,8 +110,8 @@ export const Card = ({
               allowVote && onSave({ votes: card.votes + 1 })
             }}
           >
-            <HandThumbsUp />
-            <VoteCount>{card.votes}</VoteCount>
+            <FaRegThumbsUp />
+            {card.votes > 0 && <VoteCount>{card.votes}</VoteCount>}
           </VoteContainer>
         )}
       </CardContainer>

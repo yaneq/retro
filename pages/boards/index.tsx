@@ -1,4 +1,3 @@
-import { Col, Container, Row } from "react-bootstrap"
 import React, { useEffect, useState } from "react"
 import { Board, CreateBoard } from "@components"
 import { useFirebase, useUser } from "@providers"
@@ -57,20 +56,16 @@ export default function Boards() {
   return (
     <>
       <TopMenu />
-      <Container>
-        <Row>
-          <Col>
-            {boards.map((board) => (
-              <Link href={`/boards/${board.id}`} key={board.id}>
-                <a>
-                  <Board board={board} />
-                </a>
-              </Link>
-            ))}
-            <CreateBoard onClick={() => createBoard({ title: "title" })} />
-          </Col>
-        </Row>
-      </Container>
+      <div className="container grid grid-cols-2 gap-7 mt-10">
+        {boards.map((board) => (
+          <Link href={`/boards/${board.id}`} key={board.id}>
+            <a>
+              <Board board={board} />
+            </a>
+          </Link>
+        ))}
+        <CreateBoard onClick={() => createBoard({ title: "title" })} />
+      </div>
     </>
   )
 }

@@ -65,15 +65,15 @@ export const BoardScreen = () => {
       {/* <p>user id: {user?.uid}</p> */}
       <div className="my-5">
         {board && board?.stage === "prepare" && (
-          <div className={"p-20 rounded bg-gray-100"}>
+          <div className={"m-20 rounded-xl bg-gray-100 p-10"}>
             <p
               className={
-                "text-3xl mx-10 my-20 flex font-serif italic leading-relaxed text-gray-500 whitespace-pre-line"
+                "text-xl pb-4 flex font-serif italic leading-relaxed text-gray-500 whitespace-pre-line"
               }
             >
               {quote.quote}
             </p>
-            <p className={"text-xl font-bold text-right"}>{quote.source}</p>
+            <p className={"text-md font-bold text-right"}>{quote.source}</p>
           </div>
         )}
 

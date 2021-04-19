@@ -1,9 +1,10 @@
 import * as React from "react"
-import { useState } from "react"
-import styles from "./styles.module.css"
 
 const Radio = ({ label, value, callback, selectedValue }) => (
-  <label className="cursor-pointer w-1/6 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full py-2 font-sans">
+  <label
+    className="cursor-pointer w-1/5 flex items-center justify-center truncate uppercase select-none font-semibold text-md rounded-full py-3 font-sans"
+    style={{ zIndex: 2 }}
+  >
     <input
       type="radio"
       name="tabs"
@@ -26,14 +27,14 @@ export const RadioSlide = ({
 }) => {
   const currentStep = options.indexOf(currentValue)
   return (
-    <main className="max-w-screen-xl mx-auto p-8 flex flex-col items-center">
+    <main className="max-w-screen-xl mx-auto p-2 flex flex-col items-center">
       <form className="flex w-full relative">
         {currentStep >= 0 && (
           <div
-            className="w-1/6 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full p-0 h-full bg-purple-100 absolute transform transition-transform tabAnim"
+            className="w-1/5 flex items-center justify-center truncate uppercase select-none font-semibold text-lg rounded-full p-0 h-full absolute transform transition-transform"
             style={{
               transform: `translateX(${currentStep}00%)`,
-              zIndex: -9,
+              backgroundColor: "#f5f5f5",
             }}
           />
         )}
