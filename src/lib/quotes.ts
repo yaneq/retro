@@ -208,6 +208,5 @@ export interface iQuote {
 export const getRandomQuote = (randomString: string): iQuote => {
   const quoteIndex =
     (randomString.charCodeAt(0) + randomString.charCodeAt(1)) % QUOTES.length
-  // const rand = Math.round(Math.random() * 100) % QUOTES.length
   return QUOTES[quoteIndex]
 }

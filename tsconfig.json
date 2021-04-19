@@ -19,7 +19,8 @@
       "@types": ["./src/types"],
       "@providers": ["./src/providers"],
       "@helper": ["./src/helpers"],
-      "@lib": ["./src/lib"]
+      "@lib": ["./src/lib"],
+      "@screens": ["./src/screens"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
