@@ -24,7 +24,7 @@ export const AuthControls = () => {
   }
 
   return (
-    <>
+    <div className={"font-sans"}>
       {!user && (
         <>
           <Button onClick={googleLogin}>Log in</Button>
@@ -39,12 +39,12 @@ export const AuthControls = () => {
             Log out
           </a>
           <Link href="/boards">
-            <Button className="items-center px-8 py-2 font-semibold text-white transition duration-500 ease-in-out transform rounded-lg hover:bg-blueGray-900 focus:ring focus:outline-none">
+            <button className="items-center px-8 py-2 font-semibold text-white transition duration-500 ease-in-out transform rounded-lg hover:bg-green-500 focus:outline-none bg-green-400">
               Dashboard
-            </Button>
+            </button>
           </Link>
         </>
       )}
-    </>
+    </div>
   )
 }
