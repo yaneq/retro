@@ -27,7 +27,12 @@ export const AuthControls = () => {
     <div className={"font-sans"}>
       {!user && (
         <>
-          <Button onClick={googleLogin}>Log in</Button>
+          <button
+            className="items-center px-8 py-2 font-semibold text-white transition duration-500 ease-in-out transform rounded-lg hover:bg-green-500 focus:outline-none bg-green-400"
+            onClick={googleLogin}
+          >
+            Log in
+          </button>
         </>
       )}
       {user && (
