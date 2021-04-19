@@ -4,13 +4,17 @@ import "firebase/auth"
 import "firebase/firestore"
 import { initializeFirebase } from "src/helpers/utils"
 
-const FirebaseContext = React.createContext<{
+export interface iFirebaseContext {
   app?: firebase.app.App
   auth?: firebase.auth.Auth
   firestore?: firebase.firestore.Firestore
-}>({})
+}
+
+const FirebaseContext = React.createContext<iFirebaseContext>({})
 
 interface IFirebaseContextProps {}
+
+export const FirebaseServerTimestamp = firebase.firestore.FieldValue.serverTimestamp()
 
 export const FirebaseProvider: React.FC<IFirebaseContextProps> = ({
   children,
@@ -41,6 +45,8 @@ interface IUseUserState {
   user: firebase.User | null
   loading: boolean
 }
+
+export interface iFirebaseUser extends firebase.User {}
 
 export const useUser = (): IUseUserState => {
   const { app } = useFirebase()

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Button } from "react-bootstrap"
-import { iCard } from "@types"
+import { iBoard, iCard } from "@types"
 import {
   ButtonContainer,
   CardContainer,
@@ -9,6 +9,7 @@ import {
   VoteCount,
 } from "./styles"
 import { HandThumbsUp } from "react-bootstrap-icons"
+import { iFirebaseUser } from "@providers"
 
 export const Card = ({
   card,
@@ -16,23 +17,39 @@ export const Card = ({
   onDelete,
   focussed,
   onSelect,
-  votingMode,
+  board,
+  user,
+  onReveal,
 }: {
   card: iCard
   onSave(data: object): void
   onDelete(): void
   onSelect(card: iCard): void
   focussed: boolean
-  votingMode: boolean
+  board: iBoard
+  user: iFirebaseUser
+  onReveal(card: iCard): void
 }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
   const [inputText, setInputText] = useState<string>(card.text || "")
   const inputRef = useRef(null)
 
+  const allowEdit = board.stage === "write" && card.createdBy === user.uid
+  const allowReveal = board.stage === "explain" && !card.isRevealed
+  const allowVote = board.stage === "vote"
+
+  const isBlurred =
+    board.stage !== "vote" &&
+    ((board.stage === "write" && user?.uid !== card.createdBy) ||
+      (board.stage === "explain" && !card.isRevealed) ||
+      (board.stage === "improve" && card.votes === 0))
+
   const saveAndClose = () => {
     onSave({ text: inputText })
     setIsEditMode(false)
   }
+
+  const reveal = () => {}
 
   useEffect(() => {
     setIsEditMode(focussed)
@@ -78,17 +95,23 @@ export const Card = ({
       <CardContainer
         onClick={(event) => {
           event.stopPropagation()
-          onSelect(card)
+          allowEdit && onSelect(card)
+          board.stage === "explain" && onReveal(card)
         }}
         card={card}
-        votingMode={votingMode}
+        allowVote={allowVote}
+        allowEdit={allowEdit}
+        allowReveal={allowReveal}
+        className={"font-sans"}
+        isBlurred={isBlurred}
       >
         {card.text}
-        {!!votingMode && (
+        {(!!allowVote || (board.stage === "improve" && card.votes > 0)) && (
           <VoteContainer
+            allowVote={allowVote}
             onClick={(event) => {
               event.stopPropagation()
-              onSave({ votes: card.votes + 1 })
+              allowVote && onSave({ votes: card.votes + 1 })
             }}
           >
             <HandThumbsUp />

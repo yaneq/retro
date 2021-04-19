@@ -18,7 +18,8 @@
       "@components": ["./src/components"],
       "@types": ["./src/types"],
       "@providers": ["./src/providers"],
-      "@helper": ["./src/helpers"]
+      "@helper": ["./src/helpers"],
+      "@lib": ["./src/lib"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
