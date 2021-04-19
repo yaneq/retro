@@ -17,7 +17,7 @@ export const CardContainer = styled.div<{
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  transition: color 0.5s ease, border-color 0.15s ease, text-shadow 0.5s ease;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
   ${({ editMode, allowVote, allowEdit, allowReveal }) =>
     (allowReveal || allowEdit) && !editMode && !allowVote
       ? "cursor: pointer"
@@ -57,14 +57,16 @@ export const VoteContainer = styled.div<{ allowVote: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 14px;
-  right: 14px;
+  bottom: 10px;
+  right: 10px;
   position: absolute;
   line-height: 20px;
   cursor: ${({ allowVote }) => (allowVote ? "pointer" : "default")};
   user-select: none;
-  /* transition: font 0.2s ease;
-  font-size: ${({ allowVote }) => (allowVote ? "10pt" : "34pt")}; */
+  transition: font 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 2px 8px;
+  border-radius: 10px;
 `
 
 export const VoteCount = styled.span`
