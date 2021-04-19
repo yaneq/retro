@@ -50,7 +50,9 @@ export default function Board() {
           <a>Back to boards</a>
         </Link>
       </p>
-      <div className="text-4xl">{board?.title}</div>
+      <div className="text-xl py-4  font-sans font-bold text-gray-700">
+        {board?.title}
+      </div>
 
       <RadioSlide
         options={BOARD_STAGES}

@@ -1,6 +1,5 @@
 import * as React from "react"
 import { useAuth, useUser } from "@providers"
-import { Button } from "react-bootstrap"
 import firebase from "firebase/app"
 import "firebase/auth"
 import Link from "next/link"
@@ -13,9 +12,14 @@ export const AuthControls = () => {
 
   const googleLogin = () => {
     let provider = new firebase.auth.GoogleAuthProvider()
-    auth.signInWithPopup(provider).catch((error) => {
-      console.log("error logging in", { error })
-    })
+    auth
+      .signInWithPopup(provider)
+      .then(() => {
+        router.push("/boards")
+      })
+      .catch((error) => {
+        console.log("error logging in", { error })
+      })
   }
 
   const logOut = () => {
