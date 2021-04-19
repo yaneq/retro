@@ -5,7 +5,7 @@ import { useFirebase, useUser } from "@providers"
 import { iBoard } from "@types"
 import * as FirebaseStatic from "firebase"
 import Link from "next/link"
-import { TopMenu } from "src/components/TopMenu"
+import { TopMenu } from "@components"
 
 export default function Boards() {
   const firebase = useFirebase()
@@ -39,6 +39,7 @@ export default function Boards() {
       title,
       createdAt: FirebaseStatic.default.firestore.FieldValue.serverTimestamp(),
       createdBy: user?.uid,
+      stage: "prepare",
     })
   }
 
