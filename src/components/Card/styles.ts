@@ -7,17 +7,18 @@ export const CardContainer = styled.div<{
   allowVote: boolean
   allowEdit: boolean
   allowReveal: boolean
-  blurred: boolean
+  isBlurred: boolean
+  isDimmed: boolean
 }>`
   margin: 1rem 0;
   display: block;
-  padding: 1.7rem;
-  color: #333;
+  padding: 1.2rem 1.7rem;
+  color: #444;
   font-size: 11pt;
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  transition: color 0.2s ease, text-shadow 0.2s ease;
+  transition: color 0.2s ease, text-shadow 0.2s ease, opacity 0.2s ease;
   ${({ editMode, allowVote, allowEdit, allowReveal }) =>
     (allowReveal || allowEdit) && !editMode && !allowVote
       ? "cursor: pointer"
@@ -30,6 +31,7 @@ export const CardContainer = styled.div<{
       : "#dad"};
   position: relative;
 
+  opacity: ${({ isDimmed }) => (isDimmed ? "0.3" : "1")};
   ${({ isBlurred }) => (isBlurred ? "color: transparent;" : "")}
   ${({ isBlurred }) =>
     isBlurred
@@ -64,12 +66,11 @@ export const VoteContainer = styled.div<{ allowVote: boolean }>`
   cursor: ${({ allowVote }) => (allowVote ? "pointer" : "default")};
   user-select: none;
   transition: font 0.2s ease;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(250, 250, 250, 0.9);
   padding: 2px 8px;
-  border-radius: 10px;
+  border-radius: 15px;
 `
 
 export const VoteCount = styled.span`
   font-weight: bold;
-  padding-left: 4px;
 `

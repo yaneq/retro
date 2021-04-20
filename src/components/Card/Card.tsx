@@ -36,6 +36,7 @@ export const Card = ({
   const allowEdit = board.stage === "write" && card.createdBy === user.uid
   const allowReveal = board.stage === "explain" && !card.isRevealed
   const allowVote = board.stage === "vote"
+  const isDimmed = board.stage === "improve" && card?.votes === 0
 
   const isBlurred =
     board.stage !== "vote" &&
@@ -100,6 +101,7 @@ export const Card = ({
         allowReveal={allowReveal}
         className={"font-sans"}
         isBlurred={isBlurred}
+        isDimmed={isDimmed}
       >
         {card.text}
         {(!!allowVote || (board.stage === "improve" && card.votes > 0)) && (
@@ -110,7 +112,7 @@ export const Card = ({
               allowVote && onSave({ votes: card.votes + 1 })
             }}
           >
-            <FaRegThumbsUp />
+            {allowVote && <FaRegThumbsUp style={{ marginRight: 3 }} />}
             {card.votes > 0 && <VoteCount>{card.votes}</VoteCount>}
           </VoteContainer>
         )}
