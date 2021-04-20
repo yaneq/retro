@@ -30,13 +30,13 @@ export const CardContainer = styled.div<{
       : "#dad"};
   position: relative;
 
+  user-select: none;
   opacity: ${({ isDimmed }) => (isDimmed ? "0.3" : "1")};
   ${({ isBlurred }) => (isBlurred ? "color: transparent;" : "")}
   ${({ isBlurred }) =>
     isBlurred
       ? "text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);'"
       : "text-shadow: 0 0 8px rgba(0, 0, 0, 0.0);"}
-  user-select: none;
 `
 
 export const CardInput = styled.input`
