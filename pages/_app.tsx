@@ -2,7 +2,6 @@ import React from "react"
 import { FirebaseProvider } from "@providers"
 import Head from "next/head"
 import "../styles/globals.css"
-import "tailwindcss/tailwind.css"
 
 // import "../styles/paper-kit.css"
 
