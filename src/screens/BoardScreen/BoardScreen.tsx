@@ -7,6 +7,7 @@ import Link from "next/link"
 import { BoardDomain } from "./handlers"
 import { getRandomQuote } from "@lib"
 import { BoardColumns } from "./BoardColumns"
+import { FaChevronLeft } from "react-icons/fa"
 
 const BOARD_STAGES = ["prepare", "write", "explain", "vote", "improve"]
 
@@ -45,27 +46,34 @@ export const BoardScreen = () => {
 
   return (
     <div className="container mx-auto">
-      <p>
-        <Link href={`/boards`}>
-          <a>Back to boards</a>
-        </Link>
-      </p>
-      <div className="text-xl py-4  font-sans font-bold text-gray-700">
-        {board?.title}
+      <div className="text-3xl py-3  font-sans font-bold text-gray-700 h-16">
+        {user && user?.uid === board?.createdBy && (
+          <Link href={`/boards`}>
+            <a className="pr-3 py-2">
+              <FaChevronLeft size={15} style={{ display: "inline" }} />
+            </a>
+          </Link>
+        )}
+        <span className="font-serif">{board?.title}</span>
       </div>
 
-      <RadioSlide
-        options={BOARD_STAGES}
-        currentValue={board?.stage}
-        onChangeCallback={(newValue) =>
-          boardDomain.updateBoard(board, { stage: newValue })
-        }
-      />
+      <div className="hidden sm:block">
+        <RadioSlide
+          options={BOARD_STAGES}
+          currentValue={board?.stage}
+          onChangeCallback={(newValue) =>
+            boardDomain.updateBoard(board, { stage: newValue })
+          }
+        />
+      </div>
+      <div className="block sm:hidden text-lg font-sans p-4 bg-gray-100 rounded-xl text-center">
+        <p className={"font-mono font text-xs"}>current step:</p>
+        <p className="font-bold">{board?.stage}</p>
+      </div>
 
-      {/* <p>user id: {user?.uid}</p> */}
       <div className="my-5">
         {board && board?.stage === "prepare" && (
-          <div className={"m-20 rounded-xl bg-gray-100 p-10"}>
+          <div className={"sm:m-20 rounded-xl bg-gray-100 p-10"}>
             <p
               className={
                 "text-xl pb-4 flex font-serif italic leading-relaxed text-gray-500 whitespace-pre-line"

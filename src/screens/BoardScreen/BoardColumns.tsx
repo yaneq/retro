@@ -49,17 +49,17 @@ export const BoardColumns = ({
 
   return (
     <div
-      className="grid grid-cols-3 gap-7"
+      className="grid grid-cols-1 sm:grid-cols-3 gap-7"
       onClick={() => {
         setSelectedCardId(null)
       }}
     >
       <div>
-        <p className={"text-lg font-mono bg-gray-100 p-2 rounded text-center"}>
+        <p className={"text-sm sm:text-md font-mono p-2 rounded text-center"}>
           Went well
         </p>
         {cards
-          .filter((card) => {
+          ?.filter((card) => {
             return card.column === Columns.WENT_WELL
           })
           .map((card) => (
@@ -75,16 +75,16 @@ export const BoardColumns = ({
               user={user}
             />
           ))}
-        {board.stage === "write" && (
+        {board?.stage === "write" && (
           <CreateCard onClick={() => createCard(Columns.WENT_WELL)} />
         )}
       </div>
       <div>
-        <p className={"text-lg font-mono bg-gray-100 p-2 rounded text-center"}>
+        <p className={"text-sm sm:text-md font-mono p-2 rounded text-center"}>
           Neutral
         </p>
         {cards
-          .filter((card) => {
+          ?.filter((card) => {
             return card.column === Columns.NEUTRAL
           })
           .map((card) => (
@@ -100,16 +100,16 @@ export const BoardColumns = ({
               user={user}
             />
           ))}
-        {board.stage === "write" && (
+        {board?.stage === "write" && (
           <CreateCard onClick={() => createCard(Columns.NEUTRAL)} />
         )}
       </div>
       <div>
-        <p className={"text-lg font-mono bg-gray-100 p-2 rounded text-center"}>
+        <p className={"text-sm sm:text-md font-mono p-2 rounded text-center"}>
           Could have gone better
         </p>
         {cards
-          .filter((card) => {
+          ?.filter((card) => {
             return card.column === Columns.DID_NOT_GO_WELL
           })
           .map((card) => (
@@ -125,7 +125,7 @@ export const BoardColumns = ({
               user={user}
             />
           ))}
-        {board.stage === "write" && (
+        {board?.stage === "write" && (
           <CreateCard onClick={() => createCard(Columns.DID_NOT_GO_WELL)} />
         )}
       </div>
