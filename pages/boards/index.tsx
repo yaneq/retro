@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Board, CreateBoard } from "@components"
-import { useFirebase, useUser } from "@providers"
+import { FirebaseServerTimestamp, useFirebase, useUser } from "@providers"
 import { iBoard } from "@types"
-import * as FirebaseStatic from "firebase"
-import Link from "next/link"
 import { TopMenu } from "@components"
 
 export default function Boards() {
@@ -15,6 +13,7 @@ export default function Boards() {
     if (user) {
       const subscription = firebase.firestore
         .collection("boards")
+        .orderBy("createdAt", "desc")
         .where("createdBy", "==", user?.uid)
         .onSnapshot((snapshot) => {
           let _boards: iBoard[] = []
@@ -36,33 +35,18 @@ export default function Boards() {
     if (!user) throw new Error("You need to authenticate first")
     firebase.firestore.collection("boards").add({
       title,
-      createdAt: FirebaseStatic.default.firestore.FieldValue.serverTimestamp(),
+      createdAt: FirebaseServerTimestamp,
       createdBy: user?.uid,
       stage: "prepare",
     })
   }
 
-  const updateBoard = ({ board, title }: { board: iBoard; title: string }) => {
-    firebase.firestore
-      .collection("boards")
-      .doc(board.id)
-      .set({ title }, { merge: true })
-  }
-
-  const deleteBoard = ({ board }: { board: iBoard }) => {
-    firebase.firestore.collection("boards").doc(board.id).delete()
-  }
-
   return (
     <>
       <TopMenu />
-      <div className="container grid grid-cols-2 gap-7 mt-10">
+      <div className="container grid grid-cols-1 sm:grid-cols-2 gap-7 mt-10">
         {boards.map((board) => (
-          <Link href={`/boards/${board.id}`} key={board.id}>
-            <a>
-              <Board board={board} />
-            </a>
-          </Link>
+          <Board key={board.id} board={board} />
         ))}
         <CreateBoard onClick={() => createBoard({ title: "title" })} />
       </div>
