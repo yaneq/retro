@@ -18,7 +18,6 @@ export const CardContainer = styled.div<{
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  transition: color 0.2s ease, text-shadow 0.2s ease, opacity 0.2s ease;
   ${({ editMode, allowVote, allowEdit, allowReveal }) =>
     (allowReveal || allowEdit) && !editMode && !allowVote
       ? "cursor: pointer"
@@ -37,6 +36,7 @@ export const CardContainer = styled.div<{
     isBlurred
       ? "text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);'"
       : "text-shadow: 0 0 8px rgba(0, 0, 0, 0.0);"}
+  user-select: none;
 `
 
 export const CardInput = styled.input`
