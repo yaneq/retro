@@ -47,6 +47,7 @@ interface IUseUserState {
 }
 
 export interface iFirebaseUser extends firebase.User {}
+export interface iFirebaseTimestamp extends firebase.firestore.Timestamp {}
 
 export const useUser = (): IUseUserState => {
   const { app } = useFirebase()

@@ -1,7 +1,11 @@
+import { iFirebaseTimestamp } from "@providers"
+
 export interface iBoard {
   id: string
   title: string
   stage: "prepare" | "write" | "explain" | "vote" | "improve"
+  createdAt: iFirebaseTimestamp
+  createdBy: string
 }
 
 export interface iCard {
