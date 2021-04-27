@@ -35,10 +35,9 @@ const Landing = () => {
           Retrospective <span className="text-primary-btn">you will love</span>
           </p>
         <div className="bg-green-400 rounded-2xl shadow-3xl p-5 sm:p-20 my-10 text-white font-sans">
-          <video controls={true} autoPlay={true} loop={true}>
+          <video autoPlay={true} loop={true}>
             <source src="/reretro-preview.webm" type="video/webm" />
           </video>
-          {/* <img src="/preview_large.png" alt="preview" className="w-full" /> */}
           <p className="text-xl mt-10 font-bold py-2">
             What is a Sprint Retrospective?
           </p>
