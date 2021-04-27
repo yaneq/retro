@@ -1,7 +1,7 @@
 import Head from "next/head"
 import React from "react"
 
-const TITLE = "Reretro.app - Easy to Use"
+const TITLE = "Retrospectives you will love"
 const DESCRIPTION = "Free and easy to use retrospective tool for teams"
 
 export const SEO = () => (
