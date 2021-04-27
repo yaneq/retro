@@ -16,7 +16,7 @@ export const TopMenu = ({
           <div className="inline-flex items-center">
             <div className="brand">
               <h1 className="m-0">
-                <img src="/logo2.png" alt="Frame" width="128" height="31" />
+                <img src="/reretro2.svg" alt="Frame" width="128" height="31" />
               </h1>
             </div>
           </div>
