@@ -63,7 +63,7 @@ export const Board = forwardRef(({ board }: { board: iBoard }, ref) => {
         <Link href={`/boards/${board.id}`} key={board.id}>
           <a
             href="/boards/"
-            className="items-center px-10 py-2 mt-10 font-semibold text-white transition duration-500 ease-in-out transform rounded-lg hover:bg-green-500 focus:outline-none bg-green-400 cursor-pointer"
+            className="items-center px-10 py-2 mt-10 font-semibold text-white transition duration-200 ease-in-out transform rounded-lg hover:bg-primary-btn-hover focus:outline-none bg-primary-btn cursor-pointer"
           >
             Open
           </a>

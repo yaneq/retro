@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc"
 import router from "next/router"
 import Link from "next/link"
 import Head from "next/head"
+import { FaCheckSquare } from "react-icons/fa"
 
 const Landing = () => {
   const auth = useAuth()
@@ -28,16 +29,17 @@ const Landing = () => {
       <SEO />
       <TopMenu showAuth={true} showPricing={true} />
       <div className="container">
-          <p className="flex justify-center filter drop-shadow-lg">
+        <p className="flex justify-center filter drop-shadow-lg mt-8 mb-1">
           <img src="/reretro2.svg" alt="Reretro" className="w-1/3" />
-          </p>
+        </p>
         <p className="text-2xl sm:text-2xl font-extrabold text-center text-primary-btn-hover w-full filter drop-shadow-lg">
           Retrospective <span className="text-primary-btn">you will love</span>
-          </p>
+        </p>
         <div className="bg-green-400 rounded-2xl shadow-3xl p-5 sm:p-20 my-10 text-white font-sans">
           <video autoPlay={true} loop={true}>
             <source src="/reretro-preview.webm" type="video/webm" />
           </video>
+
           <p className="text-xl mt-10 font-bold py-2">
             What is a Sprint Retrospective?
           </p>
@@ -56,9 +58,24 @@ const Landing = () => {
             not) solved.
           </p>
 
+          <ul className="list-none m-10 text-2xl w-3/4 bg-blue mx-auto text-primary-btn-hover bg-white p-10 rounded-xl">
+            <li className="flex flex-items-center py-1">
+              <FaCheckSquare className="inline mr-3" size="30" />
+              No login required for team members
+            </li>
+            <li className="flex flex-items-center py-1">
+              <FaCheckSquare className="inline mr-3" size="30" />
+              Free
+            </li>
+            <li className="flex flex-items-center py-1">
+              <FaCheckSquare className="inline mr-3" size="30" />
+              Unlimited simultaneous users
+            </li>
+          </ul>
+
           {!user && (
             <a
-              className="items-center inline-flex px-10 py-5 mt-10 font-semibold text-black transition duration-500 ease-in-out transform rounded-lg hover:bg-gray-100 focus:outline-none bg-white cursor-pointer shadow-lg hover:shadow-xl"
+              className="items-center inline-flex px-10 py-5 mt-10 font-semibold text-black transition duration-200 ease-in-out transform rounded-lg hover:bg-gray-100 focus:outline-none bg-white cursor-pointer shadow-lg hover:shadow-xl"
               onClick={googleLogin}
             >
               <FcGoogle size={28} />
@@ -67,7 +84,7 @@ const Landing = () => {
           )}
           {user && (
             <Link href="/boards">
-              <button className="items-center px-10 py-5 mt-10 font-semibold text-white transition duration-500 ease-in-out transform rounded-lg hover:bg-green-500 focus:outline-none bg-green-400 cursor-pointer shadow-lg hover:shadow-xl">
+              <button className="items-center px-10 py-5 mt-10 font-semibold text-primary-btn-hover hover:text-primary-btn transition duration-200 ease-in-out transform rounded-lg  focus:outline-none bg-white cursor-pointer shadow-lg hover:shadow-xl">
                 Go to Dashboard
               </button>
             </Link>
