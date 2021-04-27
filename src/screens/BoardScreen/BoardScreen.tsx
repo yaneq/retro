@@ -46,7 +46,7 @@ export const BoardScreen = () => {
 
   return (
     <>
-      <TopMenu showAuth={true} />
+      <TopMenu />
       <div className="container mx-auto">
         <div className="text-3xl py-3  font-sans font-bold text-gray-700 h-16">
           {user && user?.uid === board?.createdBy && (
