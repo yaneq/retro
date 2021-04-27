@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TopMenu } from "@components"
+import { SEO, TopMenu } from "@components"
 import firebase from "firebase/app"
 import "firebase/auth"
 import { useAuth, useUser } from "@providers"
@@ -25,11 +25,7 @@ const Landing = () => {
 
   return (
     <div>
-      <Head>
-        <meta property="og:image:width" content="600" />
-        <meta property="og:image:height" content="362" />
-        <meta property="og:image" content="/preview.png" />
-      </Head>
+      <SEO />
       <TopMenu showAuth={true} showPricing={true} />
       <div className="container">
         <div className="bg-gradient-to-r from-blue-700 to-purple-800 rounded-2xl shadow-3xl p-5 sm:p-20 my-10 text-white font-sans">
