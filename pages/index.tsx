@@ -36,7 +36,7 @@ const Landing = () => {
           Retrospectives <span className="text-primary-btn">you will love</span>
         </p>
         <div className="bg-green-400 rounded-2xl shadow-3xl p-5 sm:p-20 my-10 text-white font-sans">
-          <video controls={true} autoPlay={true} loop={true}>
+          <video controls autoPlay loop muted>
             <source src="/reretro-preview.webm" type="video/webm" />
           </video>
 
