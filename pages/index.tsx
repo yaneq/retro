@@ -30,10 +30,10 @@ const Landing = () => {
       <TopMenu showAuth={true} showPricing={true} />
       <div className="container">
         <p className="flex justify-center filter drop-shadow-lg mt-8 mb-1">
-          <img src="/reretro2.svg" alt="Reretro" className="w-1/3" />
+          <img src="/reretro2.svg" alt="Reretro" className="w-2/3 sm:w-1/3" />
         </p>
-        <p className="text-2xl sm:text-2xl font-extrabold text-center text-primary-btn-hover w-full filter drop-shadow-lg">
-          Retrospective <span className="text-primary-btn">you will love</span>
+        <p className="text-xl sm:text-2xl font-extrabold text-center text-primary-btn-hover w-full filter drop-shadow-lg">
+          Retrospectives <span className="text-primary-btn">you will love</span>
         </p>
         <div className="bg-green-400 rounded-2xl shadow-3xl p-5 sm:p-20 my-10 text-white font-sans">
           <video controls={true} autoPlay={true} loop={true}>
@@ -58,18 +58,24 @@ const Landing = () => {
             not) solved.
           </p>
 
-          <ul className="list-none m-10 text-2xl w-3/4 bg-blue mx-auto text-primary-btn-hover bg-white p-10 rounded-xl">
-            <li className="flex flex-items-center py-1">
-              <FaCheckSquare className="inline mr-3" size="30" />
-              No login required for team members
+          <ul className="list-none mt-12 mx-0 sm:mx-10 text-md sm:text-2xl bg-blue mx-auto text-primary-btn-hover bg-white p-4 sm:p-10 rounded-xl">
+            <li className="py-2 flex">
+              <div className="w-10">
+                <FaCheckSquare size="25" />
+              </div>
+              <div className="flex-1">No login required for team members</div>
             </li>
-            <li className="flex flex-items-center py-1">
-              <FaCheckSquare className="inline mr-3" size="30" />
-              Free
+            <li className="py-2 flex">
+              <div className="w-10">
+                <FaCheckSquare size="25" />
+              </div>
+              <div className="flex-1">Free</div>
             </li>
-            <li className="flex flex-items-center py-1">
-              <FaCheckSquare className="inline mr-3" size="30" />
-              Unlimited simultaneous users
+            <li className="py-2 flex">
+              <div className="w-10">
+                <FaCheckSquare className="flex-shrink " size="25" />
+              </div>
+              <div className="flex-1">Unlimited simultaneous users</div>
             </li>
           </ul>
 
