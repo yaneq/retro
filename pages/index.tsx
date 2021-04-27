@@ -6,6 +6,7 @@ import { useAuth, useUser } from "@providers"
 import { FcGoogle } from "react-icons/fc"
 import router from "next/router"
 import Link from "next/link"
+import Head from "next/head"
 
 const Landing = () => {
   const auth = useAuth()
@@ -24,6 +25,11 @@ const Landing = () => {
 
   return (
     <div>
+      <Head>
+        <meta property="og:image:width" content="600" />
+        <meta property="og:image:height" content="362" />
+        <meta property="og:image" content="/preview.png" />
+      </Head>
       <TopMenu showAuth={true} showPricing={true} />
       <div className="container">
         <div className="bg-gradient-to-r from-blue-700 to-purple-800 rounded-2xl shadow-3xl p-5 sm:p-20 my-10 text-white font-sans">
