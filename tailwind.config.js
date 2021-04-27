@@ -22,6 +22,10 @@ module.exports = {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        "primary-btn": "#0069B4",
+        "primary-btn-hover": "#003459",
+      },
     },
   },
   variants: {
