@@ -28,13 +28,17 @@ const Landing = () => {
       <SEO />
       <TopMenu showAuth={true} showPricing={true} />
       <div className="container">
-        <div className="bg-gradient-to-r from-blue-700 to-purple-800 rounded-2xl shadow-3xl p-5 sm:p-20 my-10 text-white font-sans">
-          <p className="text-2xl sm:text-6xl font-extrabold text-center text-white w-full filter drop-shadow-lg">
-            Just another
+          <p className="flex justify-center filter drop-shadow-lg">
+          <img src="/reretro2.svg" alt="Reretro" className="w-1/3" />
           </p>
-          <p className="text-2xl sm:text-6xl font-extrabold text-center text-blue-100 w-full filter drop-shadow-lg">
-            retrospective tool
+        <p className="text-2xl sm:text-2xl font-extrabold text-center text-primary-btn-hover w-full filter drop-shadow-lg">
+          Retrospective <span className="text-primary-btn">you will love</span>
           </p>
+        <div className="bg-green-400 rounded-2xl shadow-3xl p-5 sm:p-20 my-10 text-white font-sans">
+          <video controls={true} autoPlay={true} loop={true}>
+            <source src="/reretro-preview.webm" type="video/webm" />
+          </video>
+          {/* <img src="/preview_large.png" alt="preview" className="w-full" /> */}
           <p className="text-xl mt-10 font-bold py-2">
             What is a Sprint Retrospective?
           </p>
