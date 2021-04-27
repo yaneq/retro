@@ -34,8 +34,11 @@ export const Board = forwardRef(({ board }: { board: iBoard }, ref) => {
       <div>
         {!isEditMode && (
           <h2
-            className="text-gray-800 text-2xl sm:text-3xl font-semibold"
-            onClick={() => setIsEditMode(true)}
+            className="text-gray-800 text-2xl sm:text-3xl font-sans font-semibold"
+            onClick={() => {
+              setIsEditMode(true)
+              setTimeout(() => inputRef.current.focus(), 100)
+            }}
           >
             {board.title}
           </h2>
@@ -46,12 +49,13 @@ export const Board = forwardRef(({ board }: { board: iBoard }, ref) => {
             type="text"
             value={inputText}
             onChange={(event) => setInputText(event.target.value)}
+            className="text-gray-800 text-3xl bg-yellow-100 font-sans font-semibold border-1 w-full"
             onKeyDown={(event) => {
               event.key === "Enter" && saveAndClose()
             }}
           />
         )}
-        <p className="mt-2 text-gray-600">
+        <p className="mt-2 text-gray-400 font-sans">
           {board.createdAt?.toDate().toLocaleDateString()}
         </p>
       </div>
@@ -65,12 +69,13 @@ export const Board = forwardRef(({ board }: { board: iBoard }, ref) => {
           </a>
         </Link>
       </div>
-      <div className="absolute top-5 right-5">
+      <div className="absolute bottom-7 left-7">
         <a
           onClick={() => deleteBoard({ board })}
           className={
-            "text-gray-400 hover:text-gray-600 cursor-pointer transition-colors duration-200"
+            "text-gray-300 hover:text-primary-btn cursor-pointer transition-colors duration-200"
           }
+          title="Delete board"
         >
           <FaTrash />
         </a>
