@@ -1,7 +1,6 @@
 export * from "./Card"
 export * from "./CreateCard"
 export * from "./Board"
-export * from "./CreateBoard"
 export * from "./AuthControls"
 export * from "./TopMenu"
 export * from "./RadioSlide"

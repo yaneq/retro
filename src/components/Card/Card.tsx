@@ -7,7 +7,7 @@ import {
   VoteContainer,
   VoteCount,
 } from "./styles"
-import { FaRegThumbsUp } from "react-icons/fa"
+import { ThumbUpIcon } from "@heroicons/react/solid"
 import { iFirebaseUser } from "@providers"
 
 export const Card = ({
@@ -112,7 +112,7 @@ export const Card = ({
               allowVote && onSave({ votes: card.votes + 1 })
             }}
           >
-            {allowVote && <FaRegThumbsUp style={{ marginRight: 3 }} />}
+            {allowVote && <ThumbUpIcon style={{ marginRight: 3 }} />}
             {card.votes > 0 && <VoteCount>{card.votes}</VoteCount>}
           </VoteContainer>
         )}
