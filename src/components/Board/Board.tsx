@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useState } from "react"
 import { iBoard } from "@types"
 import Link from "next/link"
 import { useFirebase } from "@providers"
-import { FaTrash } from "react-icons/fa"
+import { TrashIcon } from "@heroicons/react/solid"
 import { NameInput } from "./styles"
 
 export const Board = forwardRef(({ board }: { board: iBoard }, ref) => {
@@ -69,15 +69,15 @@ export const Board = forwardRef(({ board }: { board: iBoard }, ref) => {
           </a>
         </Link>
       </div>
-      <div className="absolute bottom-7 left-7">
+      <div className="absolute bottom-6 left-6">
         <a
           onClick={() => deleteBoard({ board })}
           className={
-            "text-gray-300 hover:text-primary-btn cursor-pointer transition-colors duration-200"
+            "text-gray-300 hover:text-gray-400 cursor-pointer transition-colors duration-200"
           }
           title="Delete board"
         >
-          <FaTrash />
+          <TrashIcon className={"h-6 w-6"} />
         </a>
       </div>
     </div>

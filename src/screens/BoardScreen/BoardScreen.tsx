@@ -7,7 +7,7 @@ import Link from "next/link"
 import { BoardDomain } from "./handlers"
 import { getRandomQuote } from "@lib"
 import { BoardColumns } from "./BoardColumns"
-import { FaChevronLeft } from "react-icons/fa"
+import { ChevronLeftIcon } from "@heroicons/react/solid"
 
 const BOARD_STAGES = ["prepare", "write", "explain", "vote", "improve"]
 
@@ -48,11 +48,11 @@ export const BoardScreen = () => {
     <>
       <TopMenu />
       <div className="container mx-auto">
-        <div className="text-3xl py-3  font-sans font-bold text-gray-700 h-16">
+        <div className="text-3xl py-3 font-sans font-bold text-gray-700 h-16 flex items-center">
           {user && user?.uid === board?.createdBy && (
             <Link href={`/boards`}>
-              <a className="pr-3 py-2">
-                <FaChevronLeft size={15} style={{ display: "inline" }} />
+              <a>
+                <ChevronLeftIcon className={"w-8 inline-block pv-1"} />
               </a>
             </Link>
           )}

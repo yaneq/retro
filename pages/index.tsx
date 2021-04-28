@@ -6,8 +6,7 @@ import { useAuth, useUser } from "@providers"
 import { FcGoogle } from "react-icons/fc"
 import router from "next/router"
 import Link from "next/link"
-import Head from "next/head"
-import { FaCheckSquare } from "react-icons/fa"
+import { CheckCircleIcon } from "@heroicons/react/solid"
 
 const Landing = () => {
   const auth = useAuth()
@@ -58,22 +57,22 @@ const Landing = () => {
             not) solved.
           </p>
 
-          <ul className="list-none mt-12 mx-0 sm:mx-10 text-md sm:text-2xl bg-blue mx-auto text-primary-btn-hover bg-white p-4 sm:p-10 rounded-xl">
-            <li className="py-2 flex">
-              <div className="w-10">
-                <FaCheckSquare size="25" />
+          <ul className="list-none mt-12 mx-0  text-md sm:text-2xl bg-blue mx-auto text-primary-btn-hover bg-white p-6 sm:p-12 rounded-xl">
+            <li className="pb-8 flex items-center">
+              <div className="w-14">
+                <CheckCircleIcon className={"w-10 text-green-400"} />
               </div>
               <div className="flex-1">No login required for team members</div>
             </li>
-            <li className="py-2 flex">
-              <div className="w-10">
-                <FaCheckSquare size="25" />
+            <li className="pb-8 flex items-center">
+              <div className="w-14">
+                <CheckCircleIcon className={"w-10 text-green-400"} />
               </div>
               <div className="flex-1">Free</div>
             </li>
-            <li className="py-2 flex">
-              <div className="w-10">
-                <FaCheckSquare className="flex-shrink " size="25" />
+            <li className="flex items-center">
+              <div className="w-14">
+                <CheckCircleIcon className={"w-10 text-green-400"} />
               </div>
               <div className="flex-1">Unlimited simultaneous users</div>
             </li>
@@ -90,7 +89,7 @@ const Landing = () => {
           )}
           {user && (
             <Link href="/boards">
-              <button className="items-center px-10 py-5 mt-10 font-semibold text-primary-btn-hover hover:text-primary-btn transition duration-200 ease-in-out transform rounded-lg  focus:outline-none bg-white cursor-pointer shadow-lg hover:shadow-xl">
+              <button className="items-center w-full sm:w-auto px-10 py-5 mt-10 font-semibold text-primary-btn-hover hover:text-primary-btn transition duration-200 ease-in-out transform rounded-lg  focus:outline-none bg-white cursor-pointer shadow-lg hover:shadow-xl">
                 Go to Dashboard
               </button>
             </Link>
