@@ -12,10 +12,7 @@ export const TopMenu = ({
   <div className="text-gray-700 bg-white body-font">
     <div className="flex flex-col flex-wrap p-5 mx-auto border-b md:items-center md:flex-row">
       <Link href="/">
-        <a
-          href="/events"
-          className="pr-2 lg:pr-8 lg:px-6 focus:outline-none hidden sm:block"
-        >
+        <a className="pr-2 lg:pr-8 lg:px-6 focus:outline-none hidden sm:block">
           <div className="inline-flex items-center">
             <div className="brand">
               <h1 className="m-0">

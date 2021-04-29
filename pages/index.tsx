@@ -1,5 +1,5 @@
 import * as React from "react"
-import { SEO, TopMenu } from "@components"
+import { Footer, SEO, TopMenu } from "@components"
 import firebase from "firebase/app"
 import "firebase/auth"
 import { useAuth, useUser } from "@providers"
@@ -96,14 +96,7 @@ const Landing = () => {
           )}
         </div>
       </div>
-      <div className="w-full bg-gray-100 mt-20">
-        <div className="container py-20"></div>
-      </div>
-      <div className="bg-black w-full ">
-        <div className="container py-10 text-gray-400 text-center font-sans text-sm font-bold">
-          © {new Date().getFullYear()}
-        </div>
-      </div>
+      <Footer />
     </div>
   )
 }

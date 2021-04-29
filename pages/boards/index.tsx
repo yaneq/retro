@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Board } from "@components"
+import { Board, Footer } from "@components"
 import { FirebaseServerTimestamp, useFirebase, useUser } from "@providers"
 import { iBoard } from "@types"
 import { TopMenu } from "@components"
@@ -62,6 +62,7 @@ export default function Boards() {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   )
 }
