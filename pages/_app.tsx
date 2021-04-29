@@ -1,11 +1,18 @@
-import React from "react"
+import React, { FC, useEffect } from "react"
 import { FirebaseProvider } from "@providers"
 import Head from "next/head"
+import { AppProps } from "next/app"
 import "../styles/globals.css"
+import TagManager from "react-gtm-module"
 
-// import "../styles/paper-kit.css"
+const GTM_ID = "GTM-53FCH4B"
 
-function MyApp({ Component, pageProps }) {
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  // Google Tag Manager
+  useEffect(() => {
+    TagManager.initialize({ gtmId: GTM_ID })
+  }, [])
+
   return (
     <FirebaseProvider>
       <Head>
