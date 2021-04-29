@@ -46,7 +46,6 @@ export const BoardScreen = () => {
 
   return (
     <>
-      <TopMenu />
       <div className="container mx-auto">
         <div className="text-3xl py-3 font-sans font-bold text-gray-700 h-16 flex items-center">
           {user && user?.uid === board?.createdBy && (
