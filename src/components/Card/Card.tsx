@@ -7,7 +7,7 @@ import {
   VoteContainer,
   VoteCount,
 } from "./styles"
-import { ThumbUpIcon } from "@heroicons/react/solid"
+import { ThumbUpIcon } from "@heroicons/react/outline"
 import { iFirebaseUser } from "@providers"
 
 export const Card = ({
@@ -112,7 +112,7 @@ export const Card = ({
               allowVote && onSave({ votes: card.votes + 1 })
             }}
           >
-            {allowVote && <ThumbUpIcon style={{ marginRight: 3 }} />}
+            {allowVote && <ThumbUpIcon className={"w-4 h-4 mx-auto"} />}
             {card.votes > 0 && <VoteCount>{card.votes}</VoteCount>}
           </VoteContainer>
         )}

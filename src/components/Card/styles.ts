@@ -57,20 +57,23 @@ export const ButtonContainer = styled.div`
 
 export const VoteContainer = styled.div<{ allowVote: boolean }>`
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   bottom: 10px;
   right: 10px;
   position: absolute;
-  line-height: 20px;
   cursor: ${({ allowVote }) => (allowVote ? "pointer" : "default")};
   user-select: none;
   transition: font 0.2s ease;
   background-color: rgba(250, 250, 250, 0.9);
   padding: 2px 8px;
   border-radius: 15px;
+  width: 50px;
+  height: 30px;
 `
 
 export const VoteCount = styled.span`
   font-weight: bold;
+  margin: 0 auto;
 `
