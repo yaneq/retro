@@ -23,6 +23,12 @@ export const BoardColumns = ({
   user: iFirebaseUser
 }) => {
   const [selectedCardId, setSelectedCardId] = useState<string>()
+
+  let sortedCards = cards
+  if (board.stage === "improve") {
+    sortedCards = [...sortedCards].sort((a, b) => b.votes - a.votes)
+  }
+
   const createCard = async (column: Columns) => {
     const cardId = await boardDomain.createCard({ column, user })
     setSelectedCardId(cardId)
@@ -58,7 +64,7 @@ export const BoardColumns = ({
         <p className={"text-sm sm:text-md font-mono p-2 rounded text-center"}>
           Went well
         </p>
-        {cards
+        {sortedCards
           ?.filter((card) => {
             return card.column === Columns.WENT_WELL
           })
@@ -83,7 +89,7 @@ export const BoardColumns = ({
         <p className={"text-sm sm:text-md font-mono p-2 rounded text-center"}>
           Neutral
         </p>
-        {cards
+        {sortedCards
           ?.filter((card) => {
             return card.column === Columns.NEUTRAL
           })
@@ -108,7 +114,7 @@ export const BoardColumns = ({
         <p className={"text-sm sm:text-md font-mono p-2 rounded text-center"}>
           Could have gone better
         </p>
-        {cards
+        {sortedCards
           ?.filter((card) => {
             return card.column === Columns.DID_NOT_GO_WELL
           })
