@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useState } from "react"
 import { iBoard } from "@types"
 import Link from "next/link"
 import { useFirebase } from "@providers"
-import { TrashIcon } from "@heroicons/react/solid"
+import { TrashIcon, PencilIcon } from "@heroicons/react/solid"
 import { NameInput } from "./styles"
 
 export const Board = forwardRef(({ board }: { board: iBoard }, ref) => {
@@ -33,15 +33,16 @@ export const Board = forwardRef(({ board }: { board: iBoard }, ref) => {
     <div className="max-w-md py-4 px-8 shadow-lg rounded-lg border-2 border-grey-100 bg-gradient-to-r from-white to-gray-50 relative">
       <div>
         {!isEditMode && (
-          <h2
-            className="text-gray-800 text-2xl sm:text-3xl font-sans font-semibold"
-            onClick={() => {
-              setIsEditMode(true)
-              setTimeout(() => inputRef.current.focus(), 100)
-            }}
-          >
-            {board.title}
-          </h2>
+          <div className="text-gray-800 text-2xl sm:text-3xl font-sans font-semibold flex justify-between items-center">
+            <h2>{board.title}</h2>
+            <PencilIcon
+              className="w-6 h-6 text-gray-400 flex items-end cursor-pointer"
+              onClick={() => {
+                setIsEditMode(true)
+                setTimeout(() => inputRef.current.focus(), 100)
+              }}
+            />
+          </div>
         )}
         {isEditMode && (
           <NameInput
@@ -60,14 +61,24 @@ export const Board = forwardRef(({ board }: { board: iBoard }, ref) => {
         </p>
       </div>
       <div className="flex justify-end mt-4">
-        <Link href={`/boards/${board.id}`} key={board.id}>
-          <a
-            href="/boards/"
+        {!isEditMode && (
+          <Link href={`/boards/${board.id}`} key={board.id}>
+            <a
+              href="/boards/"
+              className="items-center px-10 py-2 mt-10 font-semibold text-white transition duration-200 ease-in-out transform rounded-lg hover:bg-primary-btn-hover focus:outline-none bg-primary-btn cursor-pointer"
+            >
+              Open
+            </a>
+          </Link>
+        )}
+        {isEditMode && (
+          <div
             className="items-center px-10 py-2 mt-10 font-semibold text-white transition duration-200 ease-in-out transform rounded-lg hover:bg-primary-btn-hover focus:outline-none bg-primary-btn cursor-pointer"
+            onClick={saveAndClose}
           >
-            Open
-          </a>
-        </Link>
+            Save
+          </div>
+        )}
       </div>
       <div className="absolute bottom-6 left-6">
         <a
