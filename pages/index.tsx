@@ -29,12 +29,16 @@ const Landing = () => {
       <TopMenu showAuth={true} showPricing={true} />
       <div className="container">
         <p className="flex justify-center filter drop-shadow-lg mt-8 mb-1">
-          <img src="/reretro2.svg" alt="Reretro" className="w-2/3 sm:w-1/3" />
+          <img
+            src="/reretro2.svg"
+            alt="Reretro"
+            className="w-2/3 sm:w-1/3 lg:w-1/4"
+          />
         </p>
         <p className="text-xl sm:text-2xl font-extrabold text-center text-primary-btn-hover w-full filter drop-shadow-lg">
           Retrospectives <span className="text-primary-btn">you will love</span>
         </p>
-        <div className="bg-green-400 rounded-2xl shadow-3xl p-5 sm:p-20 my-10 text-white font-sans">
+        <div className="bg-green-400 rounded-2xl shadow-3xl p-5 lg:p-20 my-10 text-white font-sans">
           <video controls autoPlay loop muted className={"rounded-xl"}>
             <source src="/reretro-preview.webm" type="video/webm" />
           </video>
@@ -64,12 +68,7 @@ const Landing = () => {
               </div>
               <div className="flex-1">No login required for team members</div>
             </li>
-            <li className="pb-8 flex items-center">
-              <div className="w-14">
-                <CheckCircleIcon className={"w-10 text-green-400"} />
-              </div>
-              <div className="flex-1">Free</div>
-            </li>
+
             <li className="flex items-center">
               <div className="w-14">
                 <CheckCircleIcon className={"w-10 text-green-400"} />
