@@ -1,5 +1,5 @@
-import Link from "next/link"
 import React from "react"
+import Link from "next/link"
 
 export const Footer = () => (
   <div style={{ marginTop: "auto" }}>
@@ -13,7 +13,7 @@ export const Footer = () => (
           <a className="flex items-center">
             ©{" "}
             <img
-              src="/reretro2.svg"
+              src="/reretro-white.svg"
               alt="Frame"
               width="60"
               height="15"
