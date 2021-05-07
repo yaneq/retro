@@ -74,6 +74,20 @@ export const BoardScreen = () => {
 
         <div className="my-5">
           {board && board?.stage === "prepare" && (
+            <>
+              <div
+                className={
+                  "sm:m-5 rounded-xl bg-yellow-200 p-10 border-red-500"
+                }
+              >
+                <p
+                  className={
+                    "text-xl pb-4 flex font-serif italic leading-relaxed text-gray-500 whitespace-pre-line"
+                  }
+                >
+                  Remember to check tasks from last week
+                </p>
+              </div>
             <div className={"sm:m-20 rounded-xl bg-gray-100 p-10"}>
               <p
                 className={
@@ -84,6 +98,7 @@ export const BoardScreen = () => {
               </p>
               <p className={"text-md font-bold text-right"}>{quote.source}</p>
             </div>
+            </>
           )}
 
           {board && board?.stage !== "prepare" && (
